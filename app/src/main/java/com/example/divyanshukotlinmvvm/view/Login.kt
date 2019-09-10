@@ -7,10 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import com.example.divyanshukotlinmvvm.R
 import com.example.divyanshukotlinmvvm.Utils.DatabaseHandler
 import com.example.divyanshukotlinmvvm.databinding.ActivityLoginBinding
 import com.example.divyanshukotlinmvvm.presenter.LoginClick
+import com.example.divyanshukotlinmvvm.viewmodel.UserViewModel
 
 class Login : AppCompatActivity() {
 
@@ -18,22 +20,20 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         var activityLoginBinding = DataBindingUtil.setContentView<ActivityLoginBinding>(this,R.layout.activity_login)
+
+
         activityLoginBinding!!.onloginClick = object : LoginClick
         {
             override fun loginClick()
             {
-
-
                 val user_email = activityLoginBinding.loginEmail.text.toString()
                 val user_pass = activityLoginBinding.loginPass.text.toString()
 
-
-                var databaseHandler = DatabaseHandler(this@Login)
+                var databaseHandler = DatabaseHandler(applicationContext)
 
                 val sqLiteDatabase: SQLiteDatabase
 
                 sqLiteDatabase = databaseHandler.readableDatabase
-
 
                 val loginQry = "SELECT * FROM users WHERE user_email= " + "'"+user_email+"'" + " AND user_password= " + "'"+user_pass+"'"
                 Log.d("LoginActivity",loginQry)
@@ -46,29 +46,26 @@ class Login : AppCompatActivity() {
                     if (cursor.moveToFirst())
                     {
                         do
-                            {
-                                val user_id = cursor.getString(cursor.getColumnIndex("id"))
+                        {
+                            val user_id = cursor.getString(cursor.getColumnIndex("id"))
 
-                                Log.d("LoginActivity","user_id: $user_id ")
-                                Toast.makeText(applicationContext,"LoggedIn",Toast.LENGTH_SHORT).show()
+                            Log.d("LoginActivity","user_id: $user_id ")
+                            Toast.makeText(applicationContext,"LoggedIn",Toast.LENGTH_SHORT).show()
 
 
-                            }
-                            while (cursor.moveToNext())
+                        }
+                        while (cursor.moveToNext())
 
+                    }
+                    else
+                    {
+                        Log.d("Login","failed")
                     }
                 }
                 else
                 {
-                    Log.d("LoginActivity","not found")
+                    Log.d("LoginActivity","user not found")
                 }
-
-
-
-
-
-
-
 
 
 

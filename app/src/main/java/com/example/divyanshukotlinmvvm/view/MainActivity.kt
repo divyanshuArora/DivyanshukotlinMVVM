@@ -10,7 +10,7 @@ import com.example.divyanshukotlinmvvm.R
 import com.example.divyanshukotlinmvvm.databinding.ActivityMainBinding
 import com.example.divyanshukotlinmvvm.model.User
 import com.example.divyanshukotlinmvvm.presenter.Presenter
-import com.example.divyanshukotlinmvvm.viewmodel.userViewModel
+import com.example.divyanshukotlinmvvm.viewmodel.UserViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         var activityMainBinding = DataBindingUtil.setContentView<ActivityMainBinding>(this,
             R.layout.activity_main
         )
-        var viewModel = ViewModelProviders.of(this).get(userViewModel::class.java)
+        var viewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
 
 
         activityMainBinding!!.register = object : Presenter {
