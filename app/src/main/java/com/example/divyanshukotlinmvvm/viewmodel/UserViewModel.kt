@@ -1,6 +1,7 @@
 package com.example.divyanshukotlinmvvm.viewmodel
 
 import android.app.Activity
+import android.app.Application
 import android.database.Cursor
 import android.database.DatabaseErrorHandler
 import android.database.sqlite.SQLiteDatabase
@@ -17,27 +18,25 @@ import com.example.divyanshukotlinmvvm.Utils.DatabaseHandler
 import com.example.divyanshukotlinmvvm.model.User
 
 
-class UserViewModel() : ViewModel(), Parcelable {
-    var arratListMutableLiveData : MutableLiveData<ArrayList<UserViewModel>> ?=  null
-    var arrayList : ArrayList<UserViewModel> ?= null
-
-    //var id = " "
+class UserViewModel : ViewModel
+{
+    var id = " "
     var name = ""
     var email = ""
+    var number = ""
 
-    constructor(parcel: Parcel) : this() {
-        name = parcel.readString()
-        email = parcel.readString()
-    }
-    //  var number = ""
+    constructor():super()
 
-
-    constructor(name:String,email:String) : this() {
-        this.name = name
-        this.email = email
+    constructor(user: User) : super()
+    {
+        this.name = user.userName
+        this.email = user.userEmail
+        this.number = user.userNumber
     }
 
 
+    var arrayMutableList = MutableLiveData<ArrayList<UserViewModel>>()
+    var arrayList = ArrayList<UserViewModel>()
 
     fun registerData(user: User,activity: Activity)
     {
@@ -54,44 +53,66 @@ class UserViewModel() : ViewModel(), Parcelable {
         databasehandler.addUser(user)
     }
 
-//    fun getData(user:User)
-//    {
-//        this.name = user.userName
-//        this.email = user.userEmail
-//
-//    }
 
-    fun getArrayList(): MutableLiveData<ArrayList<UserViewModel>>?
-    {
+
+    fun getArrayList(activity: Activity): MutableLiveData<ArrayList<UserViewModel>> {
         arrayList = ArrayList()
 
-        var user = User("Divyanshu Arora","divyanshu.arora8@gmail.com")
+        ////////////static values
+//        val user1 = User("Divyanshu Arora","divyanshu.arora8@gmail.com","7737729400")
+//        val user2 = User("ABCD","abcd@gmail.com","1234567890")
+//
+//
+//        val userViewModel1: UserViewModel = UserViewModel(user1)
+//        val userViewModel2: UserViewModel = UserViewModel(user2)
+//
+//        arrayList!!.add(userViewModel1)
+//        arrayList!!.add(userViewModel2)
+
+        //var  databaseHandler = DatabaseHandler
 
 
-      //  var userViewModel = UserViewModel(user)
+        var databaseHandler = DatabaseHandler(activity)
+        var sqLiteDatabase: SQLiteDatabase
 
 
-        return arratListMutableLiveData
-    }
+        sqLiteDatabase = databaseHandler.readableDatabase
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(name)
-        parcel.writeString(email)
-    }
+        var getDtaQry = "SELECT * FROM users"
 
-    override fun describeContents(): Int {
-        return 0
-    }
+        var cursor: Cursor = sqLiteDatabase.rawQuery(getDtaQry, null)
 
-    companion object CREATOR : Parcelable.Creator<UserViewModel> {
-        override fun createFromParcel(parcel: Parcel): UserViewModel {
-            return UserViewModel(parcel)
+        var cursorCount = cursor.count
+
+        if (cursorCount>0) {
+            if (cursor.moveToFirst()) {
+
+                do {
+
+                    var userId = cursor.getString(cursor.getColumnIndex("id"))
+                    var userName = cursor.getString(cursor.getColumnIndex("user_name"))
+                    var userEmal = cursor.getString(cursor.getColumnIndex("user_email"))
+                    var userNumber = cursor.getString(cursor.getColumnIndex("user_number"))
+
+
+                    var user = User(userName,userEmal,userNumber)
+
+                    var userViewModel = UserViewModel(user)
+                    arrayList.add(userViewModel)
+
+
+
+
+                   } while (cursor.moveToNext())
+            }
         }
+        arrayMutableList.value = arrayList
 
-        override fun newArray(size: Int): Array<UserViewModel?> {
-            return arrayOfNulls(size)
-        }
+        return arrayMutableList
     }
+
+
+
 
 
 }

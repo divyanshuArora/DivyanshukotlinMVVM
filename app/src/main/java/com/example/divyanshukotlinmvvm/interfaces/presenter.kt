@@ -1,4 +1,4 @@
-package com.example.divyanshukotlinmvvm.presenter
+package com.example.divyanshukotlinmvvm.interfaces
 
 interface Presenter
 {

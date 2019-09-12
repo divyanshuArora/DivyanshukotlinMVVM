@@ -1,46 +1,48 @@
 package com.example.divyanshukotlinmvvm.view.Adapters
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.divyanshukotlinmvvm.R
-import com.example.divyanshukotlinmvvm.databinding.UserItemBinding
+import com.example.divyanshukotlinmvvm.databinding.UserBinding
 import com.example.divyanshukotlinmvvm.viewmodel.UserViewModel
 
 
-class UserAdapter(private  var listener: OnUserClickListner): RecyclerView.Adapter<RecyclerView.ViewHolder>()
+class UserAdapter(private val context:Context, private val arrayList: ArrayList<UserViewModel>,val listner:itemClick): RecyclerView.Adapter<UserAdapter.ItemViewHolder>()
 {
 
+    val userList = arrayList
 
-    val userList = ArrayList<UserViewModel>()
-
-    fun setuserRecycle(user: ArrayList<UserViewModel>)
+    companion object {
+        var mClickListener: itemClick? = null
+    }
+    interface itemClick
     {
-        userList.addAll(user)
-        notifyDataSetChanged()
+        fun clickItem(name: String)
     }
-    
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
 
-        val userBinding : UserItemBinding
-        val layoutInflater = LayoutInflater.from(parent.context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ItemViewHolder {
+        val userBinding : UserBinding
         userBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.user_item,parent,false)
- //       val userItemBinding = UserItemBinding.inflate(layoutInflater, parent, false)
-        return RecyclerHolderCatIcon(userBinding)
+        return ItemViewHolder(userBinding)
+     }
 
-
-    }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int)
+    {
         val userInfo =  userList[position]
+        mClickListener = listner
+        holder.bind(userInfo)
 
-        (holder as UserAdapter.RecyclerHolderCatIcon).bind(userInfo,listener)
+        holder.itemView.setOnClickListener {
 
+            mClickListener?.clickItem(userList[position].name)
 
+            //Toast.makeText(context,"name: "+userList[position].name,Toast.LENGTH_SHORT).show()
+        }
     }
 
 
@@ -51,19 +53,16 @@ class UserAdapter(private  var listener: OnUserClickListner): RecyclerView.Adapt
     }
 
 
-    inner class     RecyclerHolderCatIcon(var userBinding: UserItemBinding?): RecyclerView.ViewHolder(userBinding!!.root) {
-        fun bind(user: UserViewModel, listener: OnUserClickListner)
-        {
-            userBinding!!.userModel = user
-        }
+   // inner
+    class ItemViewHolder(var userBinding: UserBinding?): RecyclerView.ViewHolder(userBinding!!.root) {
+        fun bind(userViewModel: UserViewModel)
+       {
+           this.userBinding!!.userModel = userViewModel
+       }
 
-    }
+   }
 
-    interface OnUserClickListner
-    {
-            fun onUserClick(position: Int)
 
-    }
 
 
 }

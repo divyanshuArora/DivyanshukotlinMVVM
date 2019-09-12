@@ -1,5 +1,6 @@
-package com.example.divyanshukotlinmvvm.view
+package com.example.divyanshukotlinmvvm.view.Ui
 
+import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
@@ -7,18 +8,20 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
 import com.example.divyanshukotlinmvvm.R
 import com.example.divyanshukotlinmvvm.Utils.DatabaseHandler
+import com.example.divyanshukotlinmvvm.Utils.SharedPreferences
 import com.example.divyanshukotlinmvvm.databinding.ActivityLoginBinding
-import com.example.divyanshukotlinmvvm.presenter.LoginClick
-import com.example.divyanshukotlinmvvm.viewmodel.UserViewModel
+import com.example.divyanshukotlinmvvm.interfaces.LoginClick
 
 class Login : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        /////////////Sqlite DataBase Managed
+
+        var sharedPreferences: SharedPreferences
         var activityLoginBinding = DataBindingUtil.setContentView<ActivityLoginBinding>(this,R.layout.activity_login)
 
 
@@ -26,6 +29,9 @@ class Login : AppCompatActivity() {
         {
             override fun loginClick()
             {
+
+                sharedPreferences = SharedPreferences(this@Login)
+
                 val user_email = activityLoginBinding.loginEmail.text.toString()
                 val user_pass = activityLoginBinding.loginPass.text.toString()
 
@@ -48,30 +54,24 @@ class Login : AppCompatActivity() {
                         do
                         {
                             val user_id = cursor.getString(cursor.getColumnIndex("id"))
-
                             Log.d("LoginActivity","user_id: $user_id ")
                             Toast.makeText(applicationContext,"LoggedIn",Toast.LENGTH_SHORT).show()
-
-
+                            sharedPreferences.setLoginSession(user_id)
+                            var intent = Intent(applicationContext,
+                                Dashboard::class.java)
+                            startActivity(intent)
                         }
                         while (cursor.moveToNext())
-
                     }
                     else
                     {
-                        Log.d("Login","failed")
+                        Toast.makeText(applicationContext,"Failed",Toast.LENGTH_SHORT).show()
                     }
                 }
                 else
                 {
-                    Log.d("LoginActivity","user not found")
+                    Toast.makeText(applicationContext,"User Not Found",Toast.LENGTH_SHORT).show()
                 }
-
-
-
-
-
-
             }
 
 

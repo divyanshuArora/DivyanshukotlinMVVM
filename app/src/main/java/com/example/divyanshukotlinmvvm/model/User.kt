@@ -1,11 +1,7 @@
 package com.example.divyanshukotlinmvvm.model
 
-import androidx.lifecycle.MutableLiveData
-
 class User
 {
-
-
 
     var userName: String = ""
     var userEmail: String = ""
@@ -21,11 +17,16 @@ class User
         this.userPassword = userPassword
     }
 
-    constructor(userName: String, userEmail: String)
+
+    constructor(userName: String, userEmail: String, userNumber: String)
     {
         this.userName = userName
         this.userEmail = userEmail
+        this.userNumber = userNumber
     }
+
+
+
 
 
 }
