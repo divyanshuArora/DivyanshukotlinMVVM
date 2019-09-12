@@ -2,12 +2,11 @@
 
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <data class="CountryBinding" >
         <variable
             name="CountryModel"
-            type="com.example.divyanshukotlinmvvm.viewmodel.CountryViewModel" />
+            type="com.example.divyanshukotlinmvvm.service.model.CountryModel" />
     </data>
 
     <LinearLayout
@@ -47,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:hint="Country Name"
+                android:text="@{CountryModel.country}"
                 android:textColor="#000000"
                 />
 
@@ -72,6 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.8"
                     android:hint="Code"
+                    android:text="@{CountryModel.code}"
                     android:textColor="#000000"
                     />
 

@@ -1,6 +1,6 @@
-package com.example.divyanshukotlinmvvm.model
+package com.example.divyanshukotlinmvvm.service.model
 
-class User
+class Users
 {
 
     var userName: String = ""
@@ -8,6 +8,9 @@ class User
     var userNumber: String = ""
     var userPassword: String = ""
     var userId: String = ""
+
+    constructor():super()
+
 
     constructor(userName: String, userEmail: String, userNumber: String, userPassword: String)
     {

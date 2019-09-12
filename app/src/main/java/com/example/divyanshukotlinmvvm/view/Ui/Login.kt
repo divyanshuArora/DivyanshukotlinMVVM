@@ -70,7 +70,7 @@ class Login : AppCompatActivity() {
                 }
                 else
                 {
-                    Toast.makeText(applicationContext,"User Not Found",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext,"Users Not Found",Toast.LENGTH_SHORT).show()
                 }
             }
 

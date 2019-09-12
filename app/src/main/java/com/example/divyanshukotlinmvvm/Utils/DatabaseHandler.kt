@@ -5,7 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
-import com.example.divyanshukotlinmvvm.model.User
+import com.example.divyanshukotlinmvvm.service.model.Users
 
 class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, dbName, null, 1) {
 
@@ -32,16 +32,16 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, dbName, null
     }
 
 
-    fun addUser(user: User) {
+    fun addUser(users: Users) {
 
         val sqLiteDatabase = this.writableDatabase
 
         val contentValues = ContentValues()
 
-        contentValues.put(NAME, user.userName)
-        contentValues.put(EMAIL, user.userEmail)
-        contentValues.put(NUMBER, user.userNumber)
-        contentValues.put(PASSWORD, user.userPassword)
+        contentValues.put(NAME, users.userName)
+        contentValues.put(EMAIL, users.userEmail)
+        contentValues.put(NUMBER, users.userNumber)
+        contentValues.put(PASSWORD, users.userPassword)
 
         sqLiteDatabase.insert(USER_TABLE, null, contentValues)
         sqLiteDatabase.close()

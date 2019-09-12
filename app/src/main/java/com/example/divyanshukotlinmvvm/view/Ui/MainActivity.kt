@@ -10,9 +10,10 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.divyanshukotlinmvvm.R
 import com.example.divyanshukotlinmvvm.Utils.SharedPreferences
 import com.example.divyanshukotlinmvvm.databinding.ActivityMainBinding
-import com.example.divyanshukotlinmvvm.model.User
+import com.example.divyanshukotlinmvvm.service.model.Users
 import com.example.divyanshukotlinmvvm.interfaces.Presenter
 import com.example.divyanshukotlinmvvm.viewmodel.UserViewModel
+import org.jetbrains.anko.startActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,8 +29,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        var activityMainBinding =
-            DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        var activityMainBinding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         var viewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
 
         activityMainBinding!!.register = object : Presenter {
@@ -54,7 +54,8 @@ class MainActivity : AppCompatActivity() {
                     activityMainBinding.edPassword.setError("Enter your Password")
                     return
                 }
-                var user = User(name, email, number, password)
+                var user = Users(name, email, number, password
+                )
                 viewModel.registerData(user, this@MainActivity)
             }
         }
@@ -63,8 +64,12 @@ class MainActivity : AppCompatActivity() {
 
         activityMainBinding.txtLogin.setOnClickListener {
 
-            var intent = Intent(applicationContext, Login::class.java)
-            startActivity(intent)
+//            var intent = Intent(applicationContext, Login::class.java)
+//            startActivity(intent)
+
+
+            startActivity<Login>()
+
         }
 
 

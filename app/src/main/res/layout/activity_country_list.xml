@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="getData"
-            type="com.example.divyanshukotlinmvvm.viewmodel.CountryViewModel" />
+            name="getCountryData"
+            type="com.example.divyanshukotlinmvvm.service.model.CountryResponse" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat

@@ -7,7 +7,7 @@
 
         <variable
             name="loginModel"
-            type="com.example.divyanshukotlinmvvm.model.User" />
+            type="com.example.divyanshukotlinmvvm.service.model.Users" />
 
         <variable
             name="onloginClick"

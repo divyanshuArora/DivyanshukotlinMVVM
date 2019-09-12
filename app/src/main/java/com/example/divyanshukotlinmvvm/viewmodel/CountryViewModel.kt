@@ -1,42 +1,18 @@
 package com.example.divyanshukotlinmvvm.viewmodel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.divyanshukotlinmvvm.model.CountryModel
+import com.example.divyanshukotlinmvvm.service.model.CountryResponse
+import com.example.divyanshukotlinmvvm.service.repository.CountryRepository
 
-class CountryViewModel : CountryModel
+class CountryViewModel(application: Application): AndroidViewModel(application)
 {
-
-
-    var countryId: String ?= null
-    var countryName: String ?= null
-    var countryCode: String ?= null
-    var countryFlag: String ?= null
-
-    constructor(): super()
-
-
-    var countryViewModel = CountryViewModel()
-
-    var model = countryViewModel.country()
-
-    constructor(countryModel: country)
+    fun getCountryData(): MutableLiveData<List<CountryResponse>>
     {
-        this.countryId = countryModel.countryId.toString()
-        this.countryName = countryModel.country
-        this.countryFlag = countryModel.flag
-        this.countryCode = countryModel.code
+        return  CountryRepository.getInstance().getCountryList()
     }
-
-
-
-    var arrayMutableList = MutableLiveData<ArrayList<CountryViewModel>>()
-    var arrayList = ArrayList<CountryViewModel>()
-
-
-            fun getCountryData()
-            {
-
-            }
 
 
 

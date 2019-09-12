@@ -8,12 +8,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.divyanshukotlinmvvm.R
 import com.example.divyanshukotlinmvvm.databinding.CountryBinding
+import com.example.divyanshukotlinmvvm.service.model.CountryModel
+import com.example.divyanshukotlinmvvm.view.Ui.CountryListActivity
 import com.example.divyanshukotlinmvvm.viewmodel.CountryViewModel
+import java.lang.reflect.Array
 
-class CountryListAdapter(private val context: Context,private val countryArrayList: ArrayList<CountryViewModel>) : RecyclerView.Adapter<CountryListAdapter.ItemViewHolder>()
+class CountryListAdapter(private val context: Context, private val countryResponse: List<CountryModel>) : RecyclerView.Adapter<CountryListAdapter.ItemViewHolder>()
 {
 
-    val countryList = countryArrayList
+
+    val countryList = countryResponse
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder
     {
@@ -30,16 +34,17 @@ class CountryListAdapter(private val context: Context,private val countryArrayLi
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int)
     {
-        val userInfo =  countryArrayList[position]
+       // val userInfo =  countryArrayList[position]
 
-        holder.bind(userInfo)
+        holder.bind(countryList.get(position),position)
     }
 
     class ItemViewHolder(var countryBinding: CountryBinding) : RecyclerView.ViewHolder(countryBinding!!.root)
     {
-        fun bind(countryViewModel: CountryViewModel)
+        fun bind(item: CountryModel,position: Int)
         {
-            this.countryBinding!!.countryModel = countryViewModel
+            //this.countryBinding!!.countryModel = countryViewModel
+            countryBinding.executePendingBindings()
         }
 
     }

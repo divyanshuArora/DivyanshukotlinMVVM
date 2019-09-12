@@ -1,21 +1,13 @@
 package com.example.divyanshukotlinmvvm.viewmodel
 
 import android.app.Activity
-import android.app.Application
 import android.database.Cursor
-import android.database.DatabaseErrorHandler
 import android.database.sqlite.SQLiteDatabase
-import android.os.Parcel
-import android.os.Parcelable
 import android.util.Log
-import android.view.View
-import android.widget.TextView
-import android.widget.Toast
-import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.divyanshukotlinmvvm.Utils.DatabaseHandler
-import com.example.divyanshukotlinmvvm.model.User
+import com.example.divyanshukotlinmvvm.service.model.Users
 
 
 class UserViewModel : ViewModel
@@ -25,29 +17,36 @@ class UserViewModel : ViewModel
     var email = ""
     var number = ""
 
+
     constructor():super()
 
-    constructor(user: User) : super()
+
+    constructor(users: Users) : super()
     {
-        this.name = user.userName
-        this.email = user.userEmail
-        this.number = user.userNumber
+        this.name = users.userName
+        this.email = users.userEmail
+        this.number = users.userNumber
     }
 
 
     var arrayMutableList = MutableLiveData<ArrayList<UserViewModel>>()
     var arrayList = ArrayList<UserViewModel>()
 
-    fun registerData(user: User,activity: Activity)
+    fun registerData(users: Users, activity: Activity)
     {
 
-        Log.d("userViewModel",user.userName)
-        Log.d("userViewModel",user.userEmail)
-        Log.d("userViewModel",user.userNumber)
-        Log.d("userViewModel",user.userPassword)
+        Log.d("userViewModel",users.userName)
+        Log.d("userViewModel",users.userEmail)
+        Log.d("userViewModel",users.userNumber)
+        Log.d("userViewModel",users.userPassword)
 
 
-       var user = User(user.userName,user.userEmail,user.userNumber,user.userPassword)
+       var user = Users(
+           users.userName,
+           users.userEmail,
+           users.userNumber,
+           users.userPassword
+       )
 
         var databasehandler = DatabaseHandler(activity)
         databasehandler.addUser(user)
@@ -55,12 +54,15 @@ class UserViewModel : ViewModel
 
 
 
+
+    ///////////////////////////////
+
     fun getArrayList(activity: Activity): MutableLiveData<ArrayList<UserViewModel>> {
         arrayList = ArrayList()
 
         ////////////static values
-//        val user1 = User("Divyanshu Arora","divyanshu.arora8@gmail.com","7737729400")
-//        val user2 = User("ABCD","abcd@gmail.com","1234567890")
+//        val user1 = Users("Divyanshu Arora","divyanshu.arora8@gmail.com","7737729400")
+//        val user2 = Users("ABCD","abcd@gmail.com","1234567890")
 //
 //
 //        val userViewModel1: UserViewModel = UserViewModel(user1)
@@ -69,7 +71,7 @@ class UserViewModel : ViewModel
 //        arrayList!!.add(userViewModel1)
 //        arrayList!!.add(userViewModel2)
 
-        //var  databaseHandler = DatabaseHandler
+
 
 
         var databaseHandler = DatabaseHandler(activity)
@@ -95,7 +97,11 @@ class UserViewModel : ViewModel
                     var userNumber = cursor.getString(cursor.getColumnIndex("user_number"))
 
 
-                    var user = User(userName,userEmal,userNumber)
+                    var user = Users(
+                        userName,
+                        userEmal,
+                        userNumber
+                    )
 
                     var userViewModel = UserViewModel(user)
                     arrayList.add(userViewModel)
