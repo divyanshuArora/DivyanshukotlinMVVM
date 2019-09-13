@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.Ui.CountryListActivity"
+    >
     <data>
         <variable
-            name="getCountryData"
+            name="data"
             type="com.example.divyanshukotlinmvvm.service.model.CountryResponse" />
     </data>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".view.Ui.CountryListActivity">
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/countryRecycle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#ffffff"    />
+            android:background="#ffffff"
+            />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </layout>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data class="CountryBinding" >
         <variable
             name="CountryModel"
             type="com.example.divyanshukotlinmvvm.service.model.CountryModel" />
+
     </data>
 
     <LinearLayout
@@ -30,8 +30,10 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="10dp"
-            android:src="@drawable/flag_icon"
-            />
+            app:getImageFromUrl="@{CountryModel.flag}"
+
+
+           />
 
         <LinearLayout
             android:layout_width="match_parent"

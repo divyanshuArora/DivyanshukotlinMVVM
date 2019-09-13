@@ -1,54 +1,64 @@
 package com.example.divyanshukotlinmvvm.service.model
 
+import android.content.Context
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-
 
 
 class CountryModel
 {
     @SerializedName("country_id")
     @Expose
-    private var countryId: Int? = null
+     var countryId: Int? = null
     @SerializedName("country")
     @Expose
-    private var country: String? = null
+     var country: String? = null
     @SerializedName("code")
     @Expose
-    private var code: String? = null
+     var code: String? = null
     @SerializedName("flag")
     @Expose
-    private var flag: String? = null
+     var flag: String? = null
 
-    fun getCountryId(): Int? {
+    fun getCountry_Id(): Int? {
         return countryId
     }
 
-    fun setCountryId(countryId: Int?) {
+    fun setCountry_Id(countryId: Int?) {
         this.countryId = countryId
     }
 
-    fun getCountry(): String? {
+    fun get_Country(): String? {
         return country
     }
 
-    fun setCountry(country: String) {
+    fun set_Country(country: String?) {
         this.country = country
     }
 
-    fun getCode(): String? {
+    fun get_Code(): String? {
         return code
     }
 
-    fun setCode(code: String) {
+    fun set_Code(code: String?) {
         this.code = code
     }
 
-    fun getFlag(): String? {
+    fun get_Flag(): String? {
         return flag
     }
 
-    fun setFlag(flag: String) {
+    fun set_Flag(flag: String?) {
         this.flag = flag
     }
+
+
+
+
+
+
+
 }

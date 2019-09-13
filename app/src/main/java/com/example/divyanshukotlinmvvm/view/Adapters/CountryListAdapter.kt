@@ -1,23 +1,31 @@
 package com.example.divyanshukotlinmvvm.view.Adapters
 
 import android.content.Context
+import android.media.Image
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.divyanshukotlinmvvm.R
 import com.example.divyanshukotlinmvvm.databinding.CountryBinding
 import com.example.divyanshukotlinmvvm.service.model.CountryModel
 import com.example.divyanshukotlinmvvm.view.Ui.CountryListActivity
 import com.example.divyanshukotlinmvvm.viewmodel.CountryViewModel
+import org.jetbrains.anko.image
 import java.lang.reflect.Array
 
-class CountryListAdapter(private val context: Context, private val countryResponse: List<CountryModel>) : RecyclerView.Adapter<CountryListAdapter.ItemViewHolder>()
+class CountryListAdapter(private val countryModel: List<CountryModel>,var context: Context) : RecyclerView.Adapter<CountryListAdapter.ItemViewHolder>()
 {
+    val countryList = countryModel
 
 
-    val countryList = countryResponse
+
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder
     {
@@ -37,14 +45,31 @@ class CountryListAdapter(private val context: Context, private val countryRespon
        // val userInfo =  countryArrayList[position]
 
         holder.bind(countryList.get(position),position)
+        //var imageView= holder.countryBinding.flagImg
+
+
     }
 
-    class ItemViewHolder(var countryBinding: CountryBinding) : RecyclerView.ViewHolder(countryBinding!!.root)
+//    @BindingAdapter("bind:imageUrl")
+//    fun loadImage(url:String,imageView: ImageView)
+//    {
+//        Glide.with(context).load(url).error(R.drawable.flag_icon).placeholder(R.drawable.flag_icon).into(imageView)
+//    }
+
+
+
+    class ItemViewHolder(val countryBinding: CountryBinding) : RecyclerView.ViewHolder(countryBinding!!.root)
     {
-        fun bind(item: CountryModel,position: Int)
+        fun bind( item: CountryModel,position: Int)
         {
             //this.countryBinding!!.countryModel = countryViewModel
+           // countryBinding.executePendingBindings()
+            countryBinding.countryModel= item
             countryBinding.executePendingBindings()
+
+            var imageView: ImageView = countryBinding.flagImg as ImageView
+
+
         }
 
     }
