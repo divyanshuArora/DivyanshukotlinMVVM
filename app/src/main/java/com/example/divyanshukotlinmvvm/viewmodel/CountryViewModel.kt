@@ -10,6 +10,8 @@ class CountryViewModel(application: Application): AndroidViewModel(application)
 {
     fun getCountryData(): LiveData<CountryResponse>
     {
+
+        ////////// calling  getCountryList function from CountryRepository using LiveData
         return  CountryRepository.getInstance().getCountryList()
     }
 

@@ -45,10 +45,19 @@ class CountryListActivity : AppCompatActivity() {
         progressdialog.show()
 
         try {
+
+            ////////////calling get country with observing data it 'it'
             countryViewModel!!.getCountryData().observe(this, Observer {
                 activityCountryListBinding!!.setVariable(BR.data, it)
+
+                //// calling adapter with data from 'it' as list
                 val adapter: CountryListAdapter = CountryListAdapter(it.getData() as List<CountryModel>,this)
+
+
+                //// set adapter on recycle with binding
                 activityCountryListBinding!!.countryRecycle.adapter = adapter
+
+                ///////// set layoutManager on recycle with binding
                 activityCountryListBinding!!.countryRecycle.layoutManager =LinearLayoutManager(applicationContext,RecyclerView.VERTICAL,false)
                 progressdialog.dismiss()
 

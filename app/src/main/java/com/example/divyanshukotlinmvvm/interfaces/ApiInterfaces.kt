@@ -32,6 +32,36 @@ interface ApiInterfaces {
     }
 
 
+    interface mySupplyInterface
+    {
+
+
+
+
+
+
+
+
+
+
+
+        companion object demo
+        {
+            fun createDemo():mySupplyInterface
+            {
+
+                val retrofit = Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .baseUrl("https://mc-staging.mysupply.me/rest/V1/")
+                    .build()
+
+                return retrofit.create(mySupplyInterface::class.java)
+
+
+            }
+        }
+    }
 
 
 

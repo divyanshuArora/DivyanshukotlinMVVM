@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!--Activity Binding-->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<!--    Data Binding-->
     <data class="CountryBinding" >
         <variable
             name="CountryModel"
