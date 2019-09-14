@@ -9,7 +9,7 @@
             name="fakeData"
             type="com.example.divyanshukotlinmvvm.service.model.FakeUsersResponse" />
     </data>
-
+<!--................-->
     <androidx.appcompat.widget.LinearLayoutCompat
     android:layout_width="match_parent"
     android:layout_height="match_parent"
