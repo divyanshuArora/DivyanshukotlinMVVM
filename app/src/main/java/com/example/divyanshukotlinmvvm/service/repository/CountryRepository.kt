@@ -20,7 +20,8 @@ class CountryRepository {
     {
         var data = MutableLiveData<CountryResponse>()
         ////////////////calling api from ApiInterface
-        ApiInterfaces.create().getCountry().subscribeOn(Schedulers.io())
+        ApiInterfaces.create().getCountry()
+            .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 data.value = it

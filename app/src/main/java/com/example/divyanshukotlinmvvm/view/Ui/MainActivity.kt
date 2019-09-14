@@ -24,10 +24,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         sharedPreferences = SharedPreferences(this@MainActivity)
 
-        if (sharedPreferences!!.getLoginSession()) {
-            var intent = Intent(applicationContext, Dashboard::class.java)
-            startActivity(intent)
-        }
+//        if (sharedPreferences!!.getLoginSession()) {
+//            var intent = Intent(applicationContext, Dashboard::class.java)
+//            startActivity(intent)
+//        }
 
         var activityMainBinding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         var viewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)

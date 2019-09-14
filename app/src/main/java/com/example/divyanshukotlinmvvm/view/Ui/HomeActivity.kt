@@ -34,6 +34,14 @@ class HomeActivity : AppCompatActivity()
             startActivity<CountryListActivity>()
         }
 
+        activityHomeBinding!!.asPerUser.setOnClickListener {
+            startActivity<UserSelectionActivity>()
+        }
+
+        activityHomeBinding!!.FakeUserList.setOnClickListener {
+            startActivity<FakeUsersActivity>()
+        }
+
 
 
     }

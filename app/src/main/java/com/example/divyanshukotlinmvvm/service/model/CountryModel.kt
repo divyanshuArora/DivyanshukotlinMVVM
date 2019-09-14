@@ -1,12 +1,6 @@
 package com.example.divyanshukotlinmvvm.service.model
-
-import android.content.Context
-import android.widget.ImageView
-import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-
 
 class CountryModel
 {
@@ -54,11 +48,4 @@ class CountryModel
     fun set_Flag(flag: String?) {
         this.flag = flag
     }
-
-
-
-
-
-
-
 }

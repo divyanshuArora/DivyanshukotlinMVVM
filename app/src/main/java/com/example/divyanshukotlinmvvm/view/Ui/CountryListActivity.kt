@@ -23,7 +23,7 @@ import java.lang.Exception
 class CountryListActivity : AppCompatActivity() {
 
 
-        private  var activityCountryListBinding : ActivityCountryListBinding ?= null
+    private  var activityCountryListBinding : ActivityCountryListBinding ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,17 +68,6 @@ class CountryListActivity : AppCompatActivity() {
             Log.d("CountryActivity",""+e)
             progressdialog.dismiss()
         }
-
-
-
-
-
-
-
-
-
-
-
     }
 }
 
