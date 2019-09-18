@@ -3,8 +3,11 @@ package com.example.divyanshukotlinmvvm.view.Ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.example.divyanshukotlinmvvm.R
 import com.example.divyanshukotlinmvvm.databinding.ActivityHomeBinding
+import com.example.divyanshukotlinmvvm.view.Ui.Fragments.Fragment_one
 import org.jetbrains.anko.startActivity
 
 class HomeActivity : AppCompatActivity()
@@ -14,7 +17,6 @@ class HomeActivity : AppCompatActivity()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_home)
 
         activityHomeBinding = DataBindingUtil.setContentView(this, R.layout.activity_home)
 
@@ -41,6 +43,17 @@ class HomeActivity : AppCompatActivity()
         activityHomeBinding!!.FakeUserList.setOnClickListener {
             startActivity<FakeUsersActivity>()
         }
+
+
+        activityHomeBinding!!.fragment.setOnClickListener {
+            startActivity<FragmentActivity>()
+        }
+
+
+        activityHomeBinding!!.tabActivity.setOnClickListener {
+            startActivity<TabActivity>()
+        }
+
 
 
 

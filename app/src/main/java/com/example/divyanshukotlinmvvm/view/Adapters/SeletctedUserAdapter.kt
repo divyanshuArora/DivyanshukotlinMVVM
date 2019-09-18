@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.divyanshukotlinmvvm.R
 import com.example.divyanshukotlinmvvm.databinding.SelectedUserBinding
 import com.example.divyanshukotlinmvvm.service.model.UserSelectionModel
-import com.example.divyanshukotlinmvvm.service.model.UserSelectionResponse
+import okhttp3.ResponseBody
 
-class SeletctedUserAdapter (context: Context,list :List<UserSelectionModel>): RecyclerView.Adapter<SeletctedUserAdapter.ItemViewHolder>()
+class SeletctedUserAdapter(context: Context, val list: List<UserSelectionModel>): RecyclerView.Adapter<SeletctedUserAdapter.ItemViewHolder>()
 {
 
     var arrayList = list
@@ -28,12 +28,12 @@ class SeletctedUserAdapter (context: Context,list :List<UserSelectionModel>): Re
         return arrayList.size
     }
 
-    override fun onBindViewHolder(holder: SeletctedUserAdapter.ItemViewHolder, position: Int)
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int)
     {
         holder.selectedUserBind(arrayList.get(position),position)
     }
 
-    class ItemViewHolder(val userSelectionBinding: SelectedUserBinding): RecyclerView.ViewHolder(userSelectionBinding!!.root)
+    class ItemViewHolder(val userSelectionBinding: SelectedUserBinding): RecyclerView.ViewHolder(userSelectionBinding.root)
     {
         fun selectedUserBind(item: UserSelectionModel, position: Int)
         {

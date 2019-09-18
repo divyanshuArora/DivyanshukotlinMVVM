@@ -22,18 +22,6 @@ interface ApiInterfaces {
         @Query("page") page: String): Observable<FakeUsersResponse>
 
 
-//     companion  object Factory
-//    {
-//
-//        fun getInstance():ApiInterfaces
-//        {
-//            return ApiInterfaces()
-//        }
-//
-//        private operator fun invoke(): ApiInterfaces {
-//        return invoke()
-//        }
-
 
     companion object Factory {
         fun create(): ApiInterfaces {

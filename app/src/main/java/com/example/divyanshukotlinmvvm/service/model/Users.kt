@@ -9,7 +9,6 @@ class Users
     var userPassword: String = ""
     var userId: String = ""
 
-    constructor():super()
 
 
     constructor(userName: String, userEmail: String, userNumber: String, userPassword: String)

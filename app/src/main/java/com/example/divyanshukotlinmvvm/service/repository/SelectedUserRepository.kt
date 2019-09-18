@@ -1,18 +1,20 @@
 package com.example.divyanshukotlinmvvm.service.repository
-
+import android.annotation.SuppressLint
 import android.util.Log
-import androidx.core.graphics.ColorUtils
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.divyanshukotlinmvvm.interfaces.SelectedUserApiInterface
-import com.example.divyanshukotlinmvvm.service.model.UserSelectionResponse
-import io.reactivex.Observable
-import io.reactivex.Observer
-import io.reactivex.Scheduler
+import com.example.divyanshukotlinmvvm.service.model.UserSelectionModel
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import okhttp3.Callback
+import okhttp3.Response
+import okhttp3.ResponseBody
 import org.json.JSONArray
+import org.json.JSONObject
+import java.util.logging.Level.parse
 
 
 class SelectedUserRepository {
@@ -23,57 +25,21 @@ class SelectedUserRepository {
         }
     }
 
-    fun getUserList(id: String): LiveData<UserSelectionResponse> {
-
-        var data = MutableLiveData<UserSelectionResponse>()
-
+    @SuppressLint("CheckResult")
+    fun getUserList(id: String): LiveData<List<UserSelectionModel>> {
+        var data = MutableLiveData<List<UserSelectionModel>>()
 
         SelectedUserApiInterface.createUserSelection().getSelectedUser(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-
-                data.value = it
-                Log.d("SelectedUserRepository","result"+it)
-
-            }, { Log.d("SelectedUserRepository", "Failed:" + it) })
-
-        return  data
+            .subscribe( {   data.value = it
+                Log.d("selected", "Error: "+it.size) },
+                        { Log.d("selected", "Error: "+it.message.toString())})
+        return data
+        }
     }
-}
 
 
-//        SelectedUserApiInterface.createUserSelection().getSelectedUser(id)
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe(object: Observer<UserSelectionResponse>{
-//
-//                override fun onNext(response: UserSelectionResponse) {
-//
-//
-//                    Log.d("SelectedUserRepository","list: "+response.toString())
-//
-//
-//                }
-//
-//                override fun onComplete() {
-//
-//                }
-//
-//                override fun onSubscribe(d: Disposable) {
-//
-//                    Log.e("SelectedUserRepository","Disposable"+d)
-//                }
-//
-//
-//                override fun onError(e: Throwable) {
-//
-//                    Log.e("SelectedUserRepository","Throw: "+e)
-//                }
-//            })
-//
-//        return data
-//    }
 
 
 

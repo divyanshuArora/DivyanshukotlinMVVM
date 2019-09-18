@@ -7,7 +7,7 @@
 
         <variable
             name="selectStudentItemBind"
-            type="com.example.divyanshukotlinmvvm.service.model.UserSelectionResponse" />
+            type="com.example.divyanshukotlinmvvm.service.model.UserSelectionModel" />
 
     </data>
 
@@ -49,6 +49,7 @@
         android:id="@+id/recyclerSelectedUser"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#f0f0f0"
         android:layout_marginTop="10dp" />
 </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

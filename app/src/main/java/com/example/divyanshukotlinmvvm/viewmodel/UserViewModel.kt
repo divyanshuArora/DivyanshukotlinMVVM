@@ -112,6 +112,8 @@ class UserViewModel : ViewModel
                    } while (cursor.moveToNext())
             }
         }
+
+
         arrayMutableList.value = arrayList
 
         return arrayMutableList

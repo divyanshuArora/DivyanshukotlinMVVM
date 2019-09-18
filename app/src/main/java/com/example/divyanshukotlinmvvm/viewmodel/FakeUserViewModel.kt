@@ -9,7 +9,7 @@ import com.example.divyanshukotlinmvvm.service.model.FakeUserModel
 import com.example.divyanshukotlinmvvm.service.model.FakeUsersResponse
 import com.example.divyanshukotlinmvvm.service.repository.FakeUserRepository
 
-class FakeUserViewModel(application: Application): AndroidViewModel(application)
+class FakeUserViewModel (application: Application): AndroidViewModel(application)
 {
     fun getSelectedFakeUser(page: String,context: Context): LiveData<FakeUsersResponse>
     {
