@@ -21,6 +21,7 @@ class SeletctedUserAdapter(context: Context, val list: List<UserSelectionModel>)
         val selectedUserBinding: SelectedUserBinding
        selectedUserBinding =  DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.user_selection_item,parent,false)
 
+
         return ItemViewHolder(selectedUserBinding)
     }
 

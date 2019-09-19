@@ -38,7 +38,10 @@
         android:title="TabLayout"
         />
 
-
+    <item
+        android:id="@+id/action_recyclerDrawer"
+        android:title="RecyclerDemo"
+        />
 
 
 

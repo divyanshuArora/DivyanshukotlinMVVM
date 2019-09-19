@@ -101,6 +101,11 @@ class MainDashBoard : AppCompatActivity() {
                     startActivity<TabActivity>()
                 }
 
+                R.id.action_recyclerDrawer->
+                {
+                    startActivity<RecyclerDrawer>()
+                }
+
 
 
 

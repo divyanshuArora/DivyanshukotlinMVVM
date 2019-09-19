@@ -14,4 +14,16 @@ object CustomImageAdapter
     {
         Glide.with(imageView.context).load(url).into(imageView)
     }
+
+
+    @BindingAdapter("imageResource")
+    fun setImageResource(imageView: ImageView, resource: Int){
+        imageView.setImageResource(resource)
+
+    }
+
+
+
+
+
 }

@@ -5,8 +5,8 @@
     <data class="DrawerModelBind">
 
         <variable
-            name="drawerModel"
-            type="com.example.divyanshukotlinmvvm.service.model.DrawerModel" />
+            name="drawerViewModel"
+            type="com.example.divyanshukotlinmvvm.viewmodel.Drawer_viewmodel" />
 
 
     </data>
@@ -15,9 +15,10 @@
 <LinearLayout
 
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:id="@+id/itemDrawerRecycler"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
     >
 
 
@@ -31,11 +32,11 @@
 
         <ImageView
             android:id="@+id/drawerIcon"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            getImageFromUrl="@{drawerViewModel.item_image}"
+            android:layout_width="20dp"
             android:layout_margin="10dp"
             android:layout_weight="0.3"
-            android:src="@{drawerModel.drawerItemImage}"
+            android:layout_height="30dp"
             />
 
 
@@ -46,8 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="4.7"
-            android:text="@{drawerModel.drawerItemName}"
-            android:textSize="18sp"
+            android:text="@{drawerViewModel.item_name}"
+            android:textSize="14sp"
             />
 
     </LinearLayout>

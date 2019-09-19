@@ -33,48 +33,54 @@
         android:gravity="center"
         android:orientation="vertical"
         >
-          <androidx.recyclerview.widget.RecyclerView
-              android:id="@+id/drawerRecylerView"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"/>
-
     </LinearLayout>
-
-
     </LinearLayout>
-
-
-
 
     <LinearLayout
         android:id="@+id/drawer_headerRecycler"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="#ebe5ff"
         android:orientation="vertical"
         >
-        <TextView
-            android:id="@+id/drawer_titleRecycler"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#dcfffe"
+            android:orientation="horizontal"
             android:padding="10dp"
-            android:text="Drawer Header"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            />
+            android:background="#dcfffe"
+            >
+
+
+            <TextView
+                android:id="@+id/drawer_titleRecycler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:text="Divyanshu Arora"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigation_viewRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="250dp"
 
-            />
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            >
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/drawerRecylerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </com.google.android.material.navigation.NavigationView>
 
     </LinearLayout>
 

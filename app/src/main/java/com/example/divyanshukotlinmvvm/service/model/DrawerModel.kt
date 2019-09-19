@@ -3,10 +3,10 @@ package com.example.divyanshukotlinmvvm.service.model
 class DrawerModel
 {
     var drawerItemId: String = ""
-    var drawerItemImage: Int ?= null
+    var drawerItemImage: String = ""
     var drawerItemName: String = ""
 
-    constructor(itemId: String,drawerItemImage: Int?, drawerItemName: String)
+    constructor(itemId: String,drawerItemImage: String, drawerItemName: String)
     {
         this.drawerItemId =itemId
         this.drawerItemImage = drawerItemImage

@@ -14,15 +14,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".view.Ui.RecyclerDrawer"></activity>
-        <activity
-            android:name=".view.Ui.MainDashBoard"
+        <activity android:name=".view.Ui.RecyclerDrawer"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
+        </activity>
+        <activity
+            android:name=".view.Ui.MainDashBoard"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
         </activity>
         <activity
             android:name=".view.Ui.TabActivity"
